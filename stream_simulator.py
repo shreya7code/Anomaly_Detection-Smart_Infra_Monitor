@@ -28,7 +28,7 @@ def generate_metrics():
         memory = random.uniform(30,50)
         disk = random.uniform(40,60)
 
-    # returns the metric dictionar with a timestamp
+    # returns the metric dictionary with a timestamp
     return{
         "timestamp": datetime.utcnow().isoformat(),       #iso formatted current time
         "cpu": round(cpu, 2),                           # rounding it off for a cleaner display
