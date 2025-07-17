@@ -2,9 +2,11 @@ import requests
 import random
 import time
 from datetime import datetime
+import os
 
 
-URL = "http://localhost:8000/ingest"
+# URL = "http://localhost:8000/ingest"
+URL = os.getenv("BACKEND_URL") + "/ingest"
 
 def generate_metrics():
     """

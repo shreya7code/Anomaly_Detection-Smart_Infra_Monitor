@@ -12,8 +12,22 @@ services:
       - INFLUXDB_TOKEN=my-token
       - INFLUXDB_ORG=my-org
       - INFLUXDB_BUCKET=metrics
+      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
     depends_on:
       - influxdb
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:4173"
+  
+  simulator:
+    build: ./simulator
+    environment:
+      - BACKEND_URL=http://backend:8000
+    depends_on:
+      - backend
+
 
   influxdb:
     image: influxdb:2.7
