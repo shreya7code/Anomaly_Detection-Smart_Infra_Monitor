@@ -8,11 +8,11 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      - INFLUXDB_URL=http://influxdb:8086
-      - INFLUXDB_TOKEN=my-token
-      - INFLUXDB_ORG=my-org
-      - INFLUXDB_BUCKET=metrics
-      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+      - INFLUXDB_URL=${INFLUXDB_URL}
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
+      - INFLUXDB_ORG=${INFLUXDB_ORG}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
     depends_on:
       - influxdb
 
@@ -20,14 +20,13 @@ services:
     build: ./frontend
     ports:
       - "5173:4173"
-  
+
   simulator:
     build: ./simulator
     environment:
-      - BACKEND_URL=http://backend:8000
+      - BACKEND_URL=${BACKEND_URL}
     depends_on:
       - backend
-
 
   influxdb:
     image: influxdb:2.7
@@ -37,11 +36,11 @@ services:
       - influxdb-data:/var/lib/influxdb2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpass
-      - DOCKER_INFLUXDB_INIT_ORG=my-org
-      - DOCKER_INFLUXDB_INIT_BUCKET=metrics
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-token
+      - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${DOCKER_INFLUXDB_INIT_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN}
 
 volumes:
   influxdb-data:
