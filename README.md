@@ -256,6 +256,6 @@ curl http://localhost:8000/anomalies
 
 ## 📸 Live Dashboard Preview
 
-![Smart Infra Dashboard](./Smart_Infra_Monitor_frontend.png)
+![Smart Infra Dashboard](./frontend/public/Smart_Infra_Monitor_frontend.png)
 
 > A real-time UI showing live CPU, memory, and disk metrics, with detected anomalies highlighted in red.
